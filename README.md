@@ -1,2 +1,2 @@
 # pw16
-Latest version of my webapp for managing my smart home.
+Latest version of a webapp for managing my smart home.
