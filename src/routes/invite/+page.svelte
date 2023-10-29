@@ -1,6 +1,7 @@
 <script lang="ts">
     import { redirect } from "@sveltejs/kit";
-    import { Button, TextInput } from "carbon-components-svelte";
+    import { Button, ButtonSet, TextInput } from "carbon-components-svelte";
+    import { CheckmarkOutline } from "carbon-icons-svelte";
 
     let code: string;
 
@@ -20,7 +21,9 @@
     />
 
     <div class="button">
-        <Button href="/invite/{code}">Accept Invitation</Button>
+        <ButtonSet>
+            <Button href="/invite/{code}" icon={CheckmarkOutline}>Accept Invitation</Button>
+        </ButtonSet>
     </div>
 </section>
 

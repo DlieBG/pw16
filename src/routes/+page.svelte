@@ -5,6 +5,12 @@
 </script>
 
 <section>
-    <h1>Welcomde :)</h1>
-    <h2>{JSON.stringify(data.user)}</h2>
+    <h1>Welcome :)</h1>
+    <pre>{JSON.stringify(data.user)}</pre>
 </section>
+
+<style>
+    h1 {
+        margin-bottom: 2em;
+    }
+</style>

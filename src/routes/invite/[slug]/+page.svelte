@@ -1,7 +1,12 @@
 <script lang="ts">
-    import { Button, ToastNotification } from "carbon-components-svelte";
+    import {
+        Button,
+        ButtonSet,
+        ToastNotification,
+    } from "carbon-components-svelte";
     import type { PageData } from "./$types";
     import { startRegistration } from "@simplewebauthn/browser";
+    import { Login, Password } from "carbon-icons-svelte";
 
     export let data: PageData;
 
@@ -46,7 +51,7 @@
             />
         </div>
     {/if}
-    
+
     {#if success}
         <div class="toast">
             <ToastNotification
@@ -77,11 +82,17 @@
 
     {#if success}
         <div class="button">
-            <Button href="/login" kind="tertiary">Goto Login</Button>
+            <ButtonSet>
+                <Button href="/login" kind="tertiary" icon={Login}
+                    >Goto Login</Button
+                >
+            </ButtonSet>
         </div>
     {:else}
         <div class="button">
-            <Button on:click={register}>Register</Button>
+            <ButtonSet>
+                <Button on:click={register} icon={Password}>Register</Button>
+            </ButtonSet>
         </div>
     {/if}
 </section>

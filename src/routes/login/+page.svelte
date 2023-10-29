@@ -5,6 +5,7 @@
         ButtonSet,
         ToastNotification,
     } from "carbon-components-svelte";
+    import { Login, Logout, Gift, Workspace } from "carbon-icons-svelte";
     import { startAuthentication } from "@simplewebauthn/browser";
 
     export let data: PageData;
@@ -53,7 +54,11 @@
         />
 
         <form class="button" method="POST" action="?/logout">
-            <Button type="submit" kind="danger-tertiary">Logout</Button>
+            <ButtonSet>
+                <Button type="submit" kind="danger-tertiary" icon={Logout}
+                    >Logout</Button
+                >
+            </ButtonSet>
         </form>
     {:else}
         <h1>Login</h1>
@@ -93,13 +98,17 @@
 
         {#if success}
             <div class="button">
-                <Button href="/" kind="tertiary">Goto Dashboard</Button>
+                <ButtonSet>
+                    <Button href="/" kind="tertiary" icon={Workspace}>Goto Dashboard</Button>
+                </ButtonSet>
             </div>
         {:else}
             <div class="button">
-                <ButtonSet>
-                    <Button kind="secondary" href="/invite">Invite Code</Button>
-                    <Button on:click={login}>Login</Button>
+                <ButtonSet stacked>
+                    <Button on:click={login} icon={Login}>Login</Button>
+                    <Button kind="ghost" href="/invite" icon={Gift}
+                        >Invitation Code</Button
+                    >
                 </ButtonSet>
             </div>
         {/if}
