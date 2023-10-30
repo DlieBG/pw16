@@ -18,11 +18,4 @@ COPY static static
 
 RUN npm run build
 
-FROM node:20
-
-WORKDIR /app
-
-COPY --from=build /app/package.json .
-COPY --from=build /app/build build
-
 ENTRYPOINT ["node", "build"]
