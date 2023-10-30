@@ -1,4 +1,4 @@
-FROM node:18 as build
+FROM node:20 as build
 
 WORKDIR /app
 
@@ -10,6 +10,8 @@ RUN npm i
 COPY svelte.config.js .
 COPY tsconfig.json .
 COPY vite.config.ts .
+COPY .svelte-kit/tsconfig.json .svelte-kit/
+COPY .env .
 
 COPY src src
 COPY static static
