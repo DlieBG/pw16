@@ -6,8 +6,9 @@ const { sendNotification } = pkg
 export const actions = {
     send: async ({ request, cookies }) => {
         const user = await get_user(cookies.get('pw16_session'), true);
-        const title = (await request.formData()).get('title')?.toString();
-        const message = (await request.formData()).get('message')?.toString();
+        const form = await request.formData();
+        const title = form.get('title')?.toString();
+        const message = form.get('message')?.toString();
 
         if (user && user.subscriptions && message)
             user.subscriptions.forEach(async (subscription) => {
