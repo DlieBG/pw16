@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  app:
+  nginx:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
@@ -10,3 +10,8 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+
+  ui:
+    build: .
+    restart: unless-stopped
+    env_file: .env

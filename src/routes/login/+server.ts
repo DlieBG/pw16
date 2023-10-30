@@ -59,3 +59,63 @@ export const POST: RequestHandler = async ({ request, cookies, url }) => {
 
     throw error(404);
 };
+
+export const PUT: RequestHandler = async ({ request, cookies }) => {
+    const response = await request.json();
+
+    let session_id = cookies.get('pw16_session');
+
+    if(session_id) {
+        let session = await mongo.collection('sessions').findOne({
+            session: session_id
+        });
+
+        if (session) {
+            let update = await mongo.collection('users').updateOne({
+                _id: session.user
+            }, {
+                $addToSet: {
+                    subscriptions: response
+                }
+            });
+
+            if (update.matchedCount == 1)
+                return json({});
+        }
+    }
+
+    throw error(404);
+}
+
+export const PATCH: RequestHandler = async ({ request, cookies }) => {
+    const response = await request.json();
+
+    await mongo.collection('new_session').insertOne({
+        date: new Date(),
+        session_id: cookies.get('pw16_session'),
+        new_subscription: response
+    });
+
+    let session_id = cookies.get('pw16_session');
+
+    if(session_id) {
+        let session = await mongo.collection('sessions').findOne({
+            session: session_id
+        });
+
+        if (session) {
+            let update = await mongo.collection('users').updateOne({
+                _id: session.user
+            }, {
+                $addToSet: {
+                    subscriptions: response
+                }
+            });
+
+            if (update.matchedCount == 1)
+                return json({});
+        }
+    }
+
+    throw error(404);
+}

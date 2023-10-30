@@ -1,4 +1,7 @@
+import type { PushSubscription } from "web-push";
+
 export interface User {
-    _id: string;
+    _id: any;
     name: string;
+    subscriptions?: PushSubscription[];
 }

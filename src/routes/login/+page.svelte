@@ -3,9 +3,11 @@
     import {
         Button,
         ButtonSet,
+        InlineNotification,
+        NotificationActionButton,
         ToastNotification,
     } from "carbon-components-svelte";
-    import { Login, Logout, Gift, Workspace } from "carbon-icons-svelte";
+    import { Login, Logout, Gift, Workspace, Chat } from "carbon-icons-svelte";
     import { startAuthentication } from "@simplewebauthn/browser";
 
     export let data: PageData;
@@ -13,9 +15,9 @@
     let error: string | null = null;
     let success: boolean = false;
     let name: string = "you wonderful person";
+    let notification_success: boolean = false;
 
     const login = () => {
-        console.log(data.options);
         startAuthentication(data.options)
             .then((response) => {
                 fetch("", {
@@ -27,6 +29,8 @@
                         success = true;
 
                         name = (await login.json()).name;
+
+                        register();
                     })
                     .catch((e) => {
                         error = e.toString();
@@ -37,6 +41,37 @@
                 error = e.toString();
                 success = false;
             });
+    };
+
+    const register = async () => {
+        await window.Notification.requestPermission((status) => {
+            navigator.serviceWorker
+                .register("service-worker.js")
+                .then((registration) => {
+                    return registration.pushManager
+                        .getSubscription()
+                        .then(async (subscription) => {
+                            if (subscription) return subscription;
+
+                            return registration.pushManager.subscribe({
+                                userVisibleOnly: true,
+                                applicationServerKey: data.public_key,
+                            });
+                        });
+                })
+                .then((subscription) => {
+                    fetch("", {
+                        method: "PUT",
+                        body: JSON.stringify(subscription),
+                    })
+                        .then(() => {
+                            notification_success = true;
+                        })
+                        .catch(() => {
+                            notification_success = false;
+                        });
+                });
+        });
     };
 </script>
 
@@ -83,6 +118,20 @@
                 title="You are logged in!"
                 caption="Welcome, {name}!"
             />
+
+            <InlineNotification
+                lowContrast
+                hideCloseButton
+                kind={notification_success ? "success" : "error"}
+                title="Notifications"
+                subtitle={notification_success ? "active" : "inactive"}
+            >
+                <svelte:fragment slot="actions">
+                    <NotificationActionButton on:click={register}
+                        >Retry</NotificationActionButton
+                    >
+                </svelte:fragment>
+            </InlineNotification>
         {/if}
 
         {#if !success}
@@ -99,7 +148,9 @@
         {#if success}
             <div class="button">
                 <ButtonSet>
-                    <Button href="/" kind="tertiary" icon={Workspace}>Goto Dashboard</Button>
+                    <Button href="/" kind="tertiary" icon={Workspace}
+                        >Goto Dashboard</Button
+                    >
                 </ButtonSet>
             </div>
         {:else}

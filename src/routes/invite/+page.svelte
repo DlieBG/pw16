@@ -4,11 +4,6 @@
     import { CheckmarkOutline } from "carbon-icons-svelte";
 
     let code: string;
-
-    const click = () => {
-        console.log(code);
-        throw redirect(307, code);
-    };
 </script>
 
 <section>

@@ -27,6 +27,7 @@
 
                     <HeaderPanelDivider>User</HeaderPanelDivider>
                     <HeaderPanelLink href="/login">User Info</HeaderPanelLink>
+                    <HeaderPanelLink href="/notification">Notification Tests</HeaderPanelLink>
                 </HeaderPanelLinks>
             </HeaderAction>
         </HeaderUtilities>

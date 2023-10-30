@@ -1,8 +1,17 @@
 import { mongo } from '$lib/server/db';
 import { generateAuthenticationOptions } from '@simplewebauthn/server';
 import type { Actions, PageServerLoad } from './$types';
+import { VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from '$env/static/private';
+import pkg from 'web-push';
+const { setVapidDetails } = pkg;
 
 export const load: PageServerLoad = async ({ parent, url }) => {
+    setVapidDetails(
+        'https://deborpw16.benedikt-schwering.de',
+        VAPID_PUBLIC_KEY,
+        VAPID_PRIVATE_KEY
+    );
+
     const { user } = await parent();
 
     if (!user) {
@@ -34,7 +43,8 @@ export const load: PageServerLoad = async ({ parent, url }) => {
         });
 
         return {
-            options
+            options,
+            public_key: VAPID_PUBLIC_KEY
         };
     }
 };
@@ -42,7 +52,7 @@ export const load: PageServerLoad = async ({ parent, url }) => {
 export const actions = {
     logout: async ({ cookies }) => {
         await mongo.collection('sessions').deleteOne({
-            'session': cookies.get('pw16_session')
+            session: cookies.get('pw16_session')
         });
 
         cookies.delete('pw16_session');

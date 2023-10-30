@@ -1,0 +1,16 @@
+{
+  "name": "Schwering pw16",
+  "short_name": "pw16",
+  "theme_color": "#000",
+  "background_color": "#000",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/logo.png",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
