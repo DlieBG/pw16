@@ -14,8 +14,9 @@ export const get_user = async (session_id: string | undefined, all: boolean = fa
 
             if (user)
                 return {
-                    _id: user?._id.toString(),
+                    _id: user._id,
                     name: user.name,
+                    description: user.description,
                     ...all ? user : {}
                 };
         }
