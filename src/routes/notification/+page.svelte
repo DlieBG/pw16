@@ -8,8 +8,16 @@
 
     <form method="POST" action="?/send">
         <TextInput
-            labelText="Invitation Code"
-            placeholder="Enter Invitation Code..."
+            labelText="Title"
+            placeholder="Enter Title..."
+            name="title"
+        />
+
+        <br><br>
+
+        <TextInput
+            labelText="Message"
+            placeholder="Enter Message..."
             name="message"
         />
 
