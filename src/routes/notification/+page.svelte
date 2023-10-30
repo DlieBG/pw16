@@ -1,6 +1,8 @@
 <script lang="ts">
-    import { Button, ButtonSet, TextInput } from "carbon-components-svelte";
+    import { Button, ButtonSet, MultiSelect, TextInput } from "carbon-components-svelte";
     import { Send } from "carbon-icons-svelte";
+
+    export let data;
 </script>
 
 <section>
@@ -13,12 +15,21 @@
             name="title"
         />
 
-        <br><br>
+        <br /><br />
 
         <TextInput
             labelText="Message"
             placeholder="Enter Message..."
             name="message"
+        />
+
+        <br /><br />
+
+        <MultiSelect
+            titleText="Users"
+            label="Select User..."
+            items={data.users}
+            name="users"
         />
 
         <div class="button">
