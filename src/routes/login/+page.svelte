@@ -46,7 +46,7 @@
     const register = async () => {
         await window.Notification.requestPermission((status) => {
             navigator.serviceWorker
-                .register("service-worker.js")
+                .getRegistration()
                 .then((registration) => {
                     return registration.pushManager
                         .getSubscription()
@@ -85,8 +85,12 @@
             hideCloseButton
             kind="success"
             title="You are logged in!"
-            caption="Welcome, {data.user.name}!"
-        />
+        >
+            <div slot="caption">
+                {data.user.name}<br>
+                {data.user.description}
+            </div>
+        </ToastNotification>
 
         <form class="button" method="POST" action="?/logout">
             <ButtonSet>

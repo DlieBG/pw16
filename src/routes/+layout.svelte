@@ -17,20 +17,21 @@
     export let data: PageData;
 </script>
 
+<section>
 <Header company="Schwering" platformName="pw16" href="/">
     {#if data.user}
-        <HeaderUtilities>
-            <HeaderAction>
-                <HeaderPanelLinks>
-                    <HeaderPanelDivider>Apps</HeaderPanelDivider>
-                    <HeaderPanelLink>Home Lights</HeaderPanelLink>
+    <HeaderUtilities>
+        <HeaderAction>
+            <HeaderPanelLinks>
+                <HeaderPanelDivider>Apps</HeaderPanelDivider>
+                <HeaderPanelLink>Home Lights</HeaderPanelLink>
 
-                    <HeaderPanelDivider>User</HeaderPanelDivider>
-                    <HeaderPanelLink href="/login">User Info</HeaderPanelLink>
-                    <HeaderPanelLink href="/notification">Notification Tests</HeaderPanelLink>
-                </HeaderPanelLinks>
-            </HeaderAction>
-        </HeaderUtilities>
+                <HeaderPanelDivider>User</HeaderPanelDivider>
+                <HeaderPanelLink href="/login">User Info</HeaderPanelLink>
+                <HeaderPanelLink href="/notification">Notification Tests</HeaderPanelLink>
+            </HeaderPanelLinks>
+        </HeaderAction>
+    </HeaderUtilities>
     {/if}
 </Header>
 
@@ -43,3 +44,8 @@
         </Row>
     </Grid>
 </Content>
+</section>
+
+<style>
+
+</style>

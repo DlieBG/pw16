@@ -1,9 +1,35 @@
 import type { ObjectId } from "mongodb";
-import type { PushSubscription } from "web-push";
 
 export interface User {
-    _id: string | ObjectId;
+    _id: ObjectId;
     name: string;
     description: string;
-    subscriptions?: PushSubscription[];
+    invitation: Invitation;
+    credentials: Credentials;
+    subscriptions: Subscription[];
+}
+
+export interface ClientUser {
+    _id: string;
+    name: string;
+    description: string;
+}
+
+export interface Invitation {
+    code?: string;
+    challenge?: string;
+}
+
+export interface Credentials {
+    credentialPublicKey: string;
+    credentialId: string;
+    counter: number;
+}
+
+export interface Subscription {
+    endpoint: string;
+    keys: {
+        p256dh: string;
+        auth: string;
+    }
 }

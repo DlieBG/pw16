@@ -1,6 +1,6 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { mongo } from '$lib/server/db';
+import { mongo } from '$lib/server/db.server';
 import { verifyRegistrationResponse } from '@simplewebauthn/server';
 
 export const POST: RequestHandler = async ({ request, params, url }) => {

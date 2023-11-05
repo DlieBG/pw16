@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { mongo } from '$lib/server/db';
+import { mongo } from '$lib/server/db.server';
 import { generateRegistrationOptions } from '@simplewebauthn/server';
 import { error } from '@sveltejs/kit';
 
