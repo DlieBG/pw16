@@ -18,34 +18,37 @@
 </script>
 
 <section>
-<Header company="Schwering" platformName="pw16" href="/">
-    {#if data.user}
-    <HeaderUtilities>
-        <HeaderAction>
-            <HeaderPanelLinks>
-                <HeaderPanelDivider>Apps</HeaderPanelDivider>
-                <HeaderPanelLink>Home Lights</HeaderPanelLink>
+    <Header company="Schwering" platformName="pw16" href="/">
+        {#if data.user}
+            <HeaderUtilities>
+                <HeaderAction>
+                    <HeaderPanelLinks>
+                        <HeaderPanelDivider>Apps</HeaderPanelDivider>
+                        <HeaderPanelLink>Home Lights</HeaderPanelLink>
 
-                <HeaderPanelDivider>User</HeaderPanelDivider>
-                <HeaderPanelLink href="/login">User Info</HeaderPanelLink>
-                <HeaderPanelLink href="/notification">Notification Tests</HeaderPanelLink>
-            </HeaderPanelLinks>
-        </HeaderAction>
-    </HeaderUtilities>
-    {/if}
-</Header>
+                        <HeaderPanelDivider>User</HeaderPanelDivider>
+                        <HeaderPanelLink href="/login"
+                            >User Info</HeaderPanelLink
+                        >
+                        <HeaderPanelLink href="/notification"
+                            >Notification Tests</HeaderPanelLink
+                        >
+                    </HeaderPanelLinks>
+                </HeaderAction>
+            </HeaderUtilities>
+        {/if}
+    </Header>
 
-<Content>
-    <Grid>
-        <Row>
-            <Column>
-                <slot />
-            </Column>
-        </Row>
-    </Grid>
-</Content>
+    <Content>
+        <Grid>
+            <Row>
+                <Column>
+                    <slot />
+                </Column>
+            </Row>
+        </Grid>
+    </Content>
 </section>
 
 <style>
-
 </style>
