@@ -27,13 +27,11 @@
                         <HeaderPanelLink>Home Lights</HeaderPanelLink>
 
                         <HeaderPanelDivider>Utils</HeaderPanelDivider>
-                        <HeaderPanelLink href="/login"
-                            >User</HeaderPanelLink
-                        >
+                        <HeaderPanelLink href="/login">User</HeaderPanelLink>
                         {#if data.user.admin}
-                        <HeaderPanelLink href="/admin"
-                            >Admin</HeaderPanelLink
-                        >
+                            <HeaderPanelLink href="/admin"
+                                >Admin</HeaderPanelLink
+                            >
                         {/if}
                         <HeaderPanelLink href="/notification"
                             >Notification Tests</HeaderPanelLink
