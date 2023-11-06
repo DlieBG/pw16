@@ -10,7 +10,8 @@ export const get_user_for_session = async (session_id: string | undefined, all: 
     if (session)
         return await mongo.collection('users')
             .findOne<User>({
-                _id: session.user
+                _id: session.user,
+                active: true
             });
 
     return null;
@@ -21,7 +22,8 @@ export const to_client_user = (user: User | null): ClientUser | null => {
         return {
             _id: user._id.toString(),
             name: user.name,
-            description: user.description
+            description: user.description,
+            admin: user.admin
         };
 
     return null;

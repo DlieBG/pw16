@@ -4,6 +4,7 @@ export interface User {
     _id: ObjectId;
     name: string;
     description: string;
+    admin: boolean;
     invitation: Invitation;
     credentials: Credentials;
     subscriptions: Subscription[];
@@ -13,6 +14,7 @@ export interface ClientUser {
     _id: string;
     name: string;
     description: string;
+    admin: boolean;
 }
 
 export interface Invitation {

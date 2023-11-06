@@ -7,7 +7,7 @@ export const ssr = false;
 
 export const load: PageServerLoad = async ({ params, url }) => {
     let user = await mongo.collection('users').findOne({
-        'invitation.code': params.slug
+        'invitation.code': params.code
     });
 
     if (!user)

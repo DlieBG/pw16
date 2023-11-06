@@ -5,7 +5,9 @@ import { VAPID_PUBLIC_KEY } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
     if (locals.user) {
-        let users = await mongo.collection('users').find({}).toArray();
+        let users = await mongo.collection('users').find({
+            active: true
+        }).toArray();
 
         let options = await generateAuthenticationOptions({
             rpID: url.hostname,

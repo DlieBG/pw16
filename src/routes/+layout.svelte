@@ -26,10 +26,15 @@
                         <HeaderPanelDivider>Apps</HeaderPanelDivider>
                         <HeaderPanelLink>Home Lights</HeaderPanelLink>
 
-                        <HeaderPanelDivider>User</HeaderPanelDivider>
+                        <HeaderPanelDivider>Utils</HeaderPanelDivider>
                         <HeaderPanelLink href="/login"
-                            >User Info</HeaderPanelLink
+                            >User</HeaderPanelLink
                         >
+                        {#if data.user.admin}
+                        <HeaderPanelLink href="/admin"
+                            >Admin</HeaderPanelLink
+                        >
+                        {/if}
                         <HeaderPanelLink href="/notification"
                             >Notification Tests</HeaderPanelLink
                         >
