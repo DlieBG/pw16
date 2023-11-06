@@ -1,7 +1,6 @@
 import type { Actions, PageServerLoad } from "./$types";
-import { get_user } from "$lib/server/user";
 import pkg from 'web-push';
-import { mongo } from "$lib/server/db";
+import { mongo } from "$lib/server/db.server";
 import { ObjectId } from "mongodb";
 const { sendNotification } = pkg
 

@@ -1,21 +1,13 @@
-import { mongo } from '$lib/server/db';
+import { mongo } from '$lib/server/db.server';
 import { generateAuthenticationOptions } from '@simplewebauthn/server';
 import type { Actions, PageServerLoad } from './$types';
-import { VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from '$env/static/private';
-import pkg from 'web-push';
-const { setVapidDetails } = pkg;
+import { VAPID_PUBLIC_KEY } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ parent, url }) => {
-    setVapidDetails(
-        'https://deborpw16.benedikt-schwering.de',
-        VAPID_PUBLIC_KEY,
-        VAPID_PRIVATE_KEY
-    );
-
-    const { user } = await parent();
-
-    if (!user) {
-        let users = await mongo.collection('users').find({}).toArray();
+export const load: PageServerLoad = async ({ locals, url }) => {
+    if (locals.user) {
+        let users = await mongo.collection('users').find({
+            active: true
+        }).toArray();
 
         let options = await generateAuthenticationOptions({
             rpID: url.hostname,

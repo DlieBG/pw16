@@ -1,6 +1,6 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { mongo } from '$lib/server/db';
+import { mongo } from '$lib/server/db.server';
 import { verifyAuthenticationResponse } from '@simplewebauthn/server';
 import { isoBase64URL, isoUint8Array } from '@simplewebauthn/server/helpers';
 import { UUID } from 'mongodb';
