@@ -45,15 +45,22 @@
     </Header>
 
     <Content>
-        <Grid>
-            <Row>
-                <Column>
-                    <slot />
-                </Column>
-            </Row>
-        </Grid>
+        <div class="wrapper">
+            <div class="container">
+                <slot />
+            </div>
+        </div>
     </Content>
 </section>
 
 <style>
+    .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1250px;
+    }
 </style>
