@@ -4,7 +4,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { VAPID_PUBLIC_KEY } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
-    if (locals.user) {
+    if (!locals.user) {
         let users = await mongo.collection('users').find({
             active: true
         }).toArray();
