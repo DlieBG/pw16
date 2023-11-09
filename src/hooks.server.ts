@@ -1,7 +1,8 @@
 import { VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from "$env/static/private";
 import { get_user_for_session } from "$lib/server/user.server";
 import type { Handle } from "@sveltejs/kit";
-import { setVapidDetails } from "web-push";
+import pkg from 'web-push';
+const { setVapidDetails } = pkg;
 
 setVapidDetails(
     'https://deborpw16.benedikt-schwering.de',
